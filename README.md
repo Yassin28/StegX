@@ -18,9 +18,9 @@ d'une bibliothèque partagée intégrable dans d'autres projets de développemen
 Statut
 --------------------------------------------------------------------------------
 
-* Interface graphique : développement non commencé.
-* Interface en ligne de commande : développement non commencé.
-* Bibliothèque : développement non commencé.
+* Interface graphique : Quasi-terminée.
+* Interface en ligne de commande : Quasi-terminée.
+* Bibliothèque : En cours de commencement.
 
 
 ---
@@ -141,19 +141,27 @@ Au choix :
 * *Moteur de production* : **CMake** (https://cmake.org/)
 * *Interface graphique* : <b> GTK+ </b> (>= 3.0) (https://www.gtk.org/)
 
-### - Optionnelles (Unix & Windows)
+### - Optionnelles
+
+#### -- Unix & Windows
 
 * *Générateur de documentation* : **Doxygen** (https://www.stack.nl/~dimitri/doxygen/index.html)
 * *Distribution LaTeX* : **TeX Live** (https://tug.org/texlive/)
 * *Test unitaire* : **CMocka** (https://cmocka.org/)
 
+#### -- Unix
+
+* *Générateur de tags* : **Ctags** (http://ctags.sourceforge.net/)
+* *Formateur de code source* : **GNU Indent** (https://www.gnu.org/software/indent/)
+
 Commandes et cibles
 --------------------------------------------------------------------------------
 
 La configuration de la compilation est à faire en première. Toutes les autres
-commandes sont à effectuer dans le dossier _build_. Lors d'un ajout d'un fichier
-source au projet, ou lors d'une rencontre avec un bug lors de la
-configuration/compilation, supprimez le dossier _build_ et recommencez la
+commandes sont à effectuer dans le dossier _build_. Lors de l'ajout d'un fichier
+source au projet ou lors de la rencontre d'un bug lors de la
+configuration/compilation, utilisez la commande de réinitialisation de
+l'arborescence, sinon, supprimez le dossier _build_ et recommencez la
 configuration. Les commandes entre _[  ]_ sont optionnelles.
 
 Sur **Windows**, si une erreur survient, faites attention de placer le dossier
@@ -207,10 +215,22 @@ Ci-dessous une liste des variables configurables avec leurs valeurs possibles :
 #### -- Désinstallation
 
     sudo make uninstall
+
+#### -- Génération des tags
+
+    make tags
+
+#### -- Formatage du code source
+
+    make indent
     
 #### -- Nettoyage
 
     make clean
+
+#### -- Réinitialisation
+
+    make reinit
     
 ### - Windows
 
@@ -282,3 +302,10 @@ Ci-dessous une liste des variables configurables avec leurs valeurs possibles :
         make clean
     MinGW & MSVC :
         cmake --build . --target clean
+
+#### -- Réinitialisation
+
+    MSYS :
+        make reinit
+    MinGW & MSVC :
+        cmake --build . --target reinit
